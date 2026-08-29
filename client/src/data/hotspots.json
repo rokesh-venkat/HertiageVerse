@@ -1,0 +1,52 @@
+[
+  {
+    "id": "nandi-bull",
+    "siteId": "shore-temple",
+    "name": "Nandi Bull Sculptures",
+    "position": { "x": 1.8, "y": 0.9, "z": 2.2 },
+    "period": "8th century CE",
+    "description": "A row of Nandi (bull) sculptures lines the boundary wall of the temple courtyard, marking the sacred precinct of the Shiva shrines. Nandi is Shiva's vahana (mount) and a guardian figure in Shaiva iconography.",
+    "culturalSignificance": "The Nandi row is one of the most photographed and best-preserved sculptural elements at the site, and signals the temple's primary dedication to Shiva.",
+    "image": "/images/hotspots/nandi.jpg"
+  },
+  {
+    "id": "main-vimana",
+    "siteId": "shore-temple",
+    "name": "Main Vimana (Tower)",
+    "position": { "x": 0, "y": 8.2, "z": 0 },
+    "period": "8th century CE",
+    "description": "The stepped pyramidal tower (vimana) over the main Shiva shrine is the tallest structure in the complex, exemplifying early Dravidian temple superstructure design that influenced South Indian temple architecture for centuries afterward.",
+    "culturalSignificance": "This vimana form became a template referenced in later, larger Chola and Pandya temple towers across Tamil Nadu.",
+    "image": "/images/hotspots/vimana.jpg"
+  },
+  {
+    "id": "vishnu-shrine",
+    "siteId": "shore-temple",
+    "name": "Reclining Vishnu Shrine",
+    "position": { "x": 2.1, "y": 1.9, "z": -2.1 },
+    "period": "8th century CE",
+    "description": "Sandwiched between the two Shiva shrines is a smaller shrine housing a relief of Vishnu in Anantashayana pose (reclining on the serpent Ananta), an unusual architectural choice that makes the complex tri-shrine and dual-deity.",
+    "culturalSignificance": "This layout reflects the religious plurality of the Pallava court, honoring both Shaiva and Vaishnava traditions in a single complex.",
+    "image": "/images/hotspots/vishnu.jpg"
+  },
+  {
+    "id": "coastal-erosion",
+    "siteId": "shore-temple",
+    "name": "Coastal Erosion Damage",
+    "position": { "x": 0, "y": 0.4, "z": 3.0 },
+    "period": "Ongoing since construction",
+    "description": "Centuries of direct exposure to Bay of Bengal salt spray, wind, and tidal action have significantly weathered the temple's carved surfaces, particularly on the seaward face.",
+    "culturalSignificance": "This erosion is central to why the Shore Temple is a priority case study in Indian coastal heritage conservation, and why digital documentation efforts like this one matter.",
+    "image": "/images/hotspots/erosion.jpg"
+  },
+  {
+    "id": "boundary-wall-carvings",
+    "siteId": "shore-temple",
+    "name": "Boundary Wall Reliefs",
+    "position": { "x": 3.0, "y": 0.5, "z": 0 },
+    "period": "8th century CE",
+    "description": "The compound wall surrounding the temple is carved with a continuous series of relief panels depicting mythological scenes and guardian figures, forming a narrative border around the sacred space.",
+    "culturalSignificance": "These reliefs are among the more eroded elements of the site, and archival digital documentation is one of the few ways their detail can be preserved for future study.",
+    "image": "/images/hotspots/reliefs.jpg"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "id": "shore-temple",
+  "name": "Shore Temple",
+  "location": "Mahabalipuram, Tamil Nadu, India",
+  "lat": 12.6169,
+  "lng": 80.1993,
+  "period": "8th century CE (c. 700–728 CE)",
+  "builder": "Narasimhavarman II (Rajasimha), Pallava dynasty",
+  "unescoStatus": "UNESCO World Heritage Site (inscribed 1984, part of the Group of Monuments at Mahabalipuram)",
+  "architecturalStyle": "Dravidian structural stone temple architecture",
+  "overview": "The Shore Temple is among the oldest structural stone temples in South India, built directly on the shoreline of the Bay of Bengal. Unlike the earlier rock-cut monuments at Mahabalipuram, it was constructed using dressed stone blocks rather than carved from a single rock, marking a transition point in Pallava temple architecture. The complex houses two main shrines dedicated to Shiva and one to Vishnu, and has withstood over 1,300 years of coastal erosion and monsoon exposure.",
+  "keyStats": [
+    { "label": "Built", "value": "c. 700–728 CE" },
+    { "label": "Dynasty", "value": "Pallava" },
+    { "label": "UNESCO Listed", "value": "1984" },
+    { "label": "Shrines", "value": "3 (2 Shiva, 1 Vishnu)" }
+  ],
+  "images": {
+    "hero": "/images/sites/shore-temple-hero.jpg",
+    "thumbnail": "/images/sites/shore-temple.jpg"
+  }
+}

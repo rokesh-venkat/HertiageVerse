@@ -1,0 +1,52 @@
+[
+  {
+    "id": "shore-temple",
+    "name": "Shore Temple",
+    "lat": 12.6169,
+    "lng": 80.1993,
+    "period": "8th century CE (c. 700–728 CE)",
+    "shortDescription": "A UNESCO World Heritage structural stone temple complex built by the Pallava dynasty, standing directly on the Bay of Bengal coastline.",
+    "thumbnail": "/images/sites/shore-temple.jpg",
+    "featured": true
+  },
+  {
+    "id": "pancha-rathas",
+    "name": "Pancha Rathas",
+    "lat": 12.6198,
+    "lng": 80.1927,
+    "period": "7th century CE",
+    "shortDescription": "Five monolithic rock-cut temples, each carved from a single stone, named after the Pandava brothers and Draupadi from the Mahabharata.",
+    "thumbnail": "/images/sites/pancha-rathas.jpg",
+    "featured": false
+  },
+  {
+    "id": "arjunas-penance",
+    "name": "Arjuna's Penance",
+    "lat": 12.6209,
+    "lng": 80.1930,
+    "period": "7th century CE",
+    "shortDescription": "One of the largest open-air rock reliefs in the world, depicting a Pallava-era narrative carved into a massive granite boulder.",
+    "thumbnail": "/images/sites/arjunas-penance.jpg",
+    "featured": false
+  },
+  {
+    "id": "krishnas-butter-ball",
+    "name": "Krishna's Butter Ball",
+    "lat": 12.6213,
+    "lng": 80.1932,
+    "period": "Natural formation, culturally significant since antiquity",
+    "shortDescription": "A giant balancing granite boulder resting on a short slope, a natural geological formation woven into local Krishna legend.",
+    "thumbnail": "/images/sites/butter-ball.jpg",
+    "featured": false
+  },
+  {
+    "id": "tiger-cave",
+    "name": "Tiger Cave",
+    "lat": 12.6447,
+    "lng": 80.2392,
+    "period": "7th century CE",
+    "shortDescription": "A rock-cut cave shrine with a distinctive facade of carved yali (mythical lion) heads, likely used for royal ceremonial purposes.",
+    "thumbnail": "/images/sites/tiger-cave.jpg",
+    "featured": false
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "kb_001",
+    "site": "shore-temple",
+    "topic": "construction",
+    "keywords": ["shore temple", "built", "constructed", "who built", "builder", "construct", "Rajasimha", "Narasimhavarman"],
+    "content": "The Shore Temple was built by Narasimhavarman II, also known as Rajasimha, a Pallava king, around 700–728 CE. It is among the oldest structural stone temples in South India, built from dressed granite blocks rather than carved from a single rock formation.",
+    "source": "Archaeological Survey of India"
+  },
+  {
+    "id": "kb_002",
+    "site": "shore-temple",
+    "topic": "purpose",
+    "keywords": ["shore temple", "why", "purpose", "built for", "dedicated", "religious"],
+    "content": "The temple was constructed as a royal act of devotion, housing shrines to both Shiva and Vishnu. Its coastal location made it a landmark visible to sailors and a statement of Pallava maritime and architectural power.",
+    "source": "UNESCO World Heritage documentation, Group of Monuments at Mahabalipuram"
+  },
+  {
+    "id": "kb_003",
+    "site": "shore-temple",
+    "topic": "architectural_style",
+    "keywords": ["shore temple", "style", "architecture", "architectural", "design", "Dravidian"],
+    "content": "The Shore Temple represents early Dravidian structural temple architecture. Its stepped pyramidal vimana (tower) design became a template referenced in later, larger Chola and Pandya temple towers across Tamil Nadu.",
+    "source": "UNESCO World Heritage documentation"
+  },
+  {
+    "id": "kb_004",
+    "site": "shore-temple",
+    "topic": "significance",
+    "keywords": ["shore temple", "significance", "important", "cultural significance", "why important"],
+    "content": "The Shore Temple marks a pivotal transition in Pallava architecture from rock-cut monuments to free-standing structural temples, directly influencing the development of South Indian temple design for centuries afterward.",
+    "source": "Archaeological Survey of India"
+  },
+  {
+    "id": "kb_005",
+    "site": "pancha-rathas",
+    "topic": "monoliths",
+    "keywords": ["pancha rathas", "five rathas", "monolith", "chariot", "carved rock", "monolithic"],
+    "content": "Pancha Rathas (Five Chariots) are a complex of five monolithic rock-cut shrines carved out of single pink granite boulders in the 7th century CE by Pallava King Mahendravarman I and his son Narasimhavarman I. Each ratha is named after Pandava brothers and Draupadi, though they are not temples dedicated to them.",
+    "source": "Archaeological Survey of India"
+  },
+  {
+    "id": "kb_006",
+    "site": "pancha-rathas",
+    "topic": "architecture_experimentation",
+    "keywords": ["pancha rathas", "architectural styles", "Draupadi", "Arjuna", "Bhima", "Dharmaraja", "Nakula"],
+    "content": "Each of the five rathas represents a distinct architectural model: Draupadi Ratha resembles a thatched hut, Bhima Ratha has a barrel-vaulted roof, Dharmaraja Ratha features a square stepped vimana, and Nakula-Sahadeva Ratha has an apsidal roof resembling an elephant's back.",
+    "source": "UNESCO World Heritage documentation"
+  },
+  {
+    "id": "kb_007",
+    "site": "arjunas-penance",
+    "topic": "bas_relief",
+    "keywords": ["arjuna's penance", "descent of the ganges", "relief", "rock carving", "elephants", "ganges"],
+    "content": "Arjuna's Penance (also known as Descent of the Ganges) is a massive open-air rock relief carved on two giant boulders measuring 27 by 9 meters. Created in the 7th century, it depicts over 145 figures, including life-sized elephants, divine beings, and ascetic figures.",
+    "source": "Archaeological Survey of India"
+  },
+  {
+    "id": "kb_008",
+    "site": "brihadeeswarar-temple",
+    "topic": "big_temple",
+    "keywords": ["brihadeeswarar", "thanjavur", "big temple", "rajaraja", "chola", "vimana", "granite", "kumbam"],
+    "content": "Brihadeeswarar Temple in Thanjavur was built by Chola Emperor Rajaraja I between 1003 and 1010 CE. The 66-meter high granite vimana is topped by an 80-ton single-stone capstone (Kumbam). It is one of the largest Hindu temples and an pinnacle of Tamil architecture.",
+    "source": "UNESCO World Heritage documentation, Great Living Chola Temples"
+  },
+  {
+    "id": "kb_009",
+    "site": "gangaikonda-cholapuram",
+    "topic": "chola_capital",
+    "keywords": ["gangaikonda", "cholapuram", "rajendra", "curved vimana", "water of ganges"],
+    "content": "Built by Rajendra Chola I around 1035 CE to commemorate his victorious military expedition to the Ganges River. The temple vimana rises 55 meters and features elegant concave curves, symbolizing feminine grace compared to the masculine lines of Thanjavur.",
+    "source": "Archaeological Survey of India"
+  },
+  {
+    "id": "kb_010",
+    "site": "airavatesvara-temple",
+    "topic": "darasuram_sculpture",
+    "keywords": ["airavatesvara", "darasuram", "rajaraja II", "chariot mandapa", "music steps", "carvings"],
+    "content": "Built by Rajaraja Chola II in the 12th century CE at Darasuram, the Airavatesvara Temple is famous for its intricate stone carvings, a chariot-shaped front mandapa pulled by stone horses, and musical steps that produce notes when struck.",
+    "source": "UNESCO World Heritage documentation"
+  },
+  {
+    "id": "kb_011",
+    "site": "nilgiri-mountain-railway",
+    "topic": "toy_train",
+    "keywords": ["nilgiri", "railway", "toy train", "metupalayam", "ooty", "rack railway", "steam", "x class"],
+    "content": "The Nilgiri Mountain Railway (NMR) was built by the British in 1908. Running 46 km from Mettupalayam to Udhagamandalam (Ooty), it is India's only rack railway (Abt system) and relies on steam locomotives climbing steep elevation up the Western Ghats.",
+    "source": "UNESCO World Heritage documentation, Mountain Railways of India"
+  }
+]

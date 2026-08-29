@@ -1,0 +1,74 @@
+[
+  {
+    "id": "t1",
+    "year": "630–668 CE",
+    "title": "Pallava Rock-Cut Era Begins",
+    "description": "Narasimhavarman I initiates the rock-cut monument tradition at Mahabalipuram, including Arjuna's Penance and the Pancha Rathas, laying the artistic groundwork that later produced the Shore Temple.",
+    "image": "/images/timeline/rock-cut-era.jpg",
+    "eventType": "context"
+  },
+  {
+    "id": "t2",
+    "year": "c. 700–728 CE",
+    "title": "Shore Temple Constructed",
+    "description": "Narasimhavarman II (Rajasimha) commissions the Shore Temple, built from dressed granite blocks rather than carved from a single rock — a shift toward structural temple architecture.",
+    "image": "/images/timeline/construction.jpg",
+    "eventType": "construction"
+  },
+  {
+    "id": "t3",
+    "year": "8th–9th century CE",
+    "title": "Pallava Decline",
+    "description": "Following Rajasimha's reign, Pallava political power gradually wanes under pressure from the Chola dynasty, though the temple continues in active worship.",
+    "image": "/images/timeline/pallava-decline.jpg",
+    "eventType": "historical"
+  },
+  {
+    "id": "t4",
+    "year": "9th–13th century CE",
+    "title": "Chola Period",
+    "description": "The Chola dynasty absorbs the region and continues South Indian temple-building traditions influenced by Pallava structural innovation, including the vimana form pioneered at the Shore Temple.",
+    "image": "/images/timeline/chola-period.jpg",
+    "eventType": "historical"
+  },
+  {
+    "id": "t5",
+    "year": "17th–18th century CE",
+    "title": "European Colonial-Era Accounts",
+    "description": "European travelers and colonial administrators document Mahabalipuram, including early written references to a temple structure visible from the sea, contributing to the site's modern rediscovery.",
+    "image": "/images/timeline/colonial-accounts.jpg",
+    "eventType": "documentation"
+  },
+  {
+    "id": "t6",
+    "year": "19th–20th century CE",
+    "title": "Archaeological Documentation",
+    "description": "The Archaeological Survey of India undertakes systematic study, conservation assessment, and protection measures for the Shore Temple and the wider Mahabalipuram monument group.",
+    "image": "/images/timeline/asi-documentation.jpg",
+    "eventType": "preservation"
+  },
+  {
+    "id": "t7",
+    "year": "1984",
+    "title": "UNESCO World Heritage Listing",
+    "description": "The Group of Monuments at Mahabalipuram, including the Shore Temple, is inscribed as a UNESCO World Heritage Site, recognizing its outstanding universal cultural value.",
+    "image": "/images/timeline/unesco-listing.jpg",
+    "eventType": "recognition"
+  },
+  {
+    "id": "t8",
+    "year": "2004",
+    "title": "Indian Ocean Tsunami",
+    "description": "The 2004 tsunami temporarily exposes submerged structures off the coast near the temple, renewing scientific interest in the possibility of additional Pallava-era structures beneath the sea.",
+    "image": "/images/timeline/tsunami-2004.jpg",
+    "eventType": "historical"
+  },
+  {
+    "id": "t9",
+    "year": "Present Day",
+    "title": "Ongoing Conservation & Digital Documentation",
+    "description": "ASI conservation continues to address coastal erosion damage, while digital preservation initiatives — including projects like HeritageVerse — aim to create lasting, accessible records of the site.",
+    "image": "/images/timeline/present-day.jpg",
+    "eventType": "preservation"
+  }
+]

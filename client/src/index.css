@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── HeritageVerse Design Tokens ── */
+  /* Dark mode: carved stone / digital archive identity */
+  --color-basalt-950: #14110d;
+  --color-basalt-900: #1c1811;
+  --color-basalt-800: #262019;
+  --color-basalt-700: #362e22;
+  --color-basalt-600: #4a3f2e;
+  --color-sand-50: #faf7f0;
+  --color-sand-100: #f2ebdd;
+  --color-sand-200: #e8ddc8;
+  --color-sand-300: #ddd0b4;
+  --color-sand-500: #a89b7e;
+  --color-sand-700: #7a6f5c;
+  --color-gold-300: #f0d48a;
+  --color-gold-400: #e0b866;
+  --color-gold-500: #d9a441;
+  --color-gold-600: #b38330;
+  --color-gold-700: #8a6523;
+  --color-slate-400: #6f8790;
+  --color-slate-500: #4a6670;
+  --color-slate-600: #354b53;
+
+  /* Light-mode-specific surface colors */
+  --color-ivory-50: #fefcf8;
+  --color-ivory-100: #faf5ec;
+  --color-ivory-200: #f0e8d8;
+  --color-ivory-300: #e2d6c0;
+  --color-ivory-600: #8c7e68;
+  --color-ivory-700: #6b5e4a;
+  --color-ivory-800: #4a3f30;
+  --color-ivory-900: #2e2618;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/* ── Dark Mode (Default) ──────────────────────────────────── */
+html.dark body,
+body {
+  background: var(--color-basalt-950);
+  color: var(--color-sand-100);
+  font-family: var(--font-body);
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* ── Light Mode ───────────────────────────────────────────── */
+html.light body {
+  background: var(--color-ivory-50);
+  color: var(--color-ivory-900);
+}
+
+/* ── Light Mode Component Overrides ──────────────────────── */
+html.light .bg-basalt-950 { background: var(--color-ivory-50); }
+html.light .bg-basalt-900 { background: var(--color-ivory-100); }
+html.light .bg-basalt-800 { background: var(--color-ivory-200); }
+
+html.light .text-sand-100 { color: var(--color-ivory-900); }
+html.light .text-sand-300 { color: var(--color-ivory-700); }
+html.light .text-sand-500 { color: var(--color-ivory-600); }
+
+html.light .text-gold-400 { color: var(--color-gold-700); }
+html.light .text-gold-500 { color: var(--color-gold-600); }
+
+html.light .border-basalt-800 { border-color: var(--color-ivory-300); }
+html.light .border-basalt-700 { border-color: var(--color-ivory-300); }
+
+html.light .bg-basalt-950\/80 { background: rgba(254, 252, 248, 0.85); }
+html.light .backdrop-blur-md { backdrop-filter: blur(12px); }
+
+/* Card hover in light mode */
+html.light .hover\:bg-basalt-900:hover { background: var(--color-ivory-200); }
+
+/* Gold CTA buttons stay vibrant in both modes */
+html.light .bg-gold-500 { background: var(--color-gold-600); }
+html.light .hover\:bg-gold-400:hover { background: var(--color-gold-500); }
+
+/* Border accent in light */
+html.light .border-gold-600\/50 { border-color: rgba(179, 131, 48, 0.5); }
+html.light .border-gold-600\/60 { border-color: rgba(179, 131, 48, 0.6); }
+
+/* ── Carved-Edge Divider ──────────────────────────────────── */
+.carved-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-gold-500) 45%, transparent),
+    transparent
+  );
+}
+
+html.light .carved-rule {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-gold-600) 35%, transparent),
+    transparent
+  );
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes scan-sweep {
+  0% { transform: translateY(-110%); opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+.scan-line {
+  animation: scan-sweep 3.6s ease-in-out infinite;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise-in {
+  animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in {
+  animation: fade-in 0.5s ease both;
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide-up {
+  animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 164, 65, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(217, 164, 65, 0); }
+}
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-line, .rise-in, .fade-in, .slide-up, .pulse-glow { animation: none !important; }
+}
+
+/* ── Scrollbar Styling ────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-basalt-900); }
+::-webkit-scrollbar-thumb { background: var(--color-basalt-700); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold-600); }
+
+html.light ::-webkit-scrollbar-track { background: var(--color-ivory-100); }
+html.light ::-webkit-scrollbar-thumb { background: var(--color-ivory-300); }
+html.light ::-webkit-scrollbar-thumb:hover { background: var(--color-gold-600); }
