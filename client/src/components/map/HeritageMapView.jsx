@@ -15,13 +15,15 @@ const GROUP_COLORS = {
   'mountain-railways': { bg: '#41b8d9', border: '#f2ebdd' },
 }
 
+const SITES = getSitesForMap()
+
 export default function HeritageMapView({ onSelectSite, selectedSiteId }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const [mapReady, setMapReady] = useState(false)
   const { isDark } = useTheme()
 
-  const sites = getSitesForMap()
+  const themeRef = useRef(isDark)
 
   useEffect(() => {
     if (mapRef.current) return
@@ -43,7 +45,7 @@ export default function HeritageMapView({ onSelectSite, selectedSiteId }) {
             id: 'osm-tiles',
             type: 'raster',
             source: 'osm',
-            paint: isDark
+            paint: themeRef.current
               ? { 'raster-saturation': -0.6, 'raster-brightness-min': 0.15 }
               : { 'raster-saturation': -0.2, 'raster-brightness-min': 0.4 },
           },
@@ -69,7 +71,7 @@ export default function HeritageMapView({ onSelectSite, selectedSiteId }) {
     const map = mapRef.current
     const markers = []
 
-    sites.forEach((site) => {
+    SITES.forEach((site) => {
       const colors = GROUP_COLORS[site.unescoGroup] || { bg: '#d9a441', border: '#14110d' }
       const isSelected = site.id === selectedSiteId
       const isFeatured = site.featured

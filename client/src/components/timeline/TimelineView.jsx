@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Calendar, ChevronRight } from 'lucide-react'
+import { Calendar } from 'lucide-react'
 
 export default function TimelineView({ events = [], siteName }) {
   const [selectedEvent, setSelectedEvent] = useState(0)
