@@ -219,7 +219,7 @@ export default function Landing() {
               <div className="h-36 rounded-xl bg-basalt-800 mb-5 flex items-center justify-center overflow-hidden relative">
                 <img
                   src={site.thumbnail}
-                  alt={site.name}
+                  alt={site.imageAlt || site.name}
                   onError={(e) => {
                     e.target.style.display = 'none'
                   }}

@@ -1,14 +1,19 @@
-import { useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { lazy, Suspense, useState } from 'react'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import { useHeritageStore } from '../store/heritageStore'
-import { getSiteBySlug, getGroupById } from '../data/heritageSites'
+import {
+  getGoogleMapsUrl,
+  getSiteById,
+  getSiteBySlug,
+  getGroupById,
+} from '../data/heritageSites'
 import Navbar from '../components/ui/Navbar'
-import HeritageViewer from '../components/3d/HeritageViewer'
 import TimelineView from '../components/timeline/TimelineView'
 import AIChatPanel from '../components/ai/AIChatPanel'
 import { useTheme } from '../hooks/useTheme'
 import {
   ArrowLeft,
+  ExternalLink,
   MapPin,
   Calendar,
   Building2,
@@ -23,6 +28,8 @@ import {
   Maximize2,
 } from 'lucide-react'
 
+const HeritageViewer = lazy(() => import('../components/3d/HeritageViewer'))
+
 const TABS = [
   { id: 'overview', label: 'Overview', icon: Info },
   { id: '3d', label: '3D Experience', icon: ScanLine },
@@ -34,12 +41,13 @@ const TABS = [
 ]
 
 export default function SiteExperience() {
-  const { slug } = useParams()
+  const { slug, siteId } = useParams()
+  const navigate = useNavigate()
   const { activeTab, setActiveTab } = useHeritageStore()
   const { isDark } = useTheme()
   const [selectedImage, setSelectedImage] = useState(null)
 
-  const site = getSiteBySlug(slug)
+  const site = getSiteBySlug(slug) || getSiteById(siteId) || getSiteBySlug(siteId)
 
   if (!site) {
     return (
@@ -78,13 +86,13 @@ export default function SiteExperience() {
       <div className="w-full h-64 md:h-80 relative overflow-hidden border-b border-basalt-800 bg-basalt-900">
         <img
           src={site.heroImage}
-          alt={site.name}
+          alt={site.imageAlt || site.name}
           onError={(e) => {
             e.target.style.display = 'none'
           }}
           className="w-full h-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-basalt-950 via-basalt-950/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-basalt-950 via-basalt-950/40 to-transparent" />
       </div>
 
       <header className="max-w-6xl mx-auto px-6 pt-8 pb-6 relative z-10 -mt-20">
@@ -115,6 +123,15 @@ export default function SiteExperience() {
             <Building2 size={13} /> {site.dynasty}
           </span>
         </div>
+        <a
+          href={getGoogleMapsUrl(site)}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${site.name} in Google Maps`}
+          className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold-600/60 px-4 py-2 text-xs font-mono uppercase tracking-widest text-gold-400 hover:bg-gold-500 hover:text-basalt-950 transition-colors"
+        >
+          <ExternalLink size={14} /> Open {site.name} in Google Maps
+        </a>
       </header>
 
       <nav className="max-w-6xl mx-auto px-6 flex gap-1 border-b border-basalt-800 overflow-x-auto">
@@ -123,7 +140,13 @@ export default function SiteExperience() {
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                if (tab.id === 'visit') {
+                  navigate(`/site/${site.id}/visit`)
+                  return
+                }
+                setActiveTab(tab.id)
+              }}
               className={`shrink-0 px-4 py-3 text-sm font-medium border-b-2 transition-colors flex items-center gap-2 ${
                 activeTab === tab.id
                   ? 'border-gold-500 text-gold-400'
@@ -182,12 +205,14 @@ export default function SiteExperience() {
         {/* 3D Tab */}
         {activeTab === '3d' && (
           <div className="rise-in">
-            <div className="h-[560px]">
-              <HeritageViewer siteId={site.id} modelPath={site.modelPath} has3DModel={site.has3DModel} />
+            <div className="h-140">
+              <Suspense fallback={<div className="h-full rounded-2xl border border-basalt-700 bg-basalt-900 flex items-center justify-center text-sand-500">Loading 3D experience...</div>}>
+                <HeritageViewer siteId={site.id} modelPath={site.modelPath} has3DModel={site.has3DModel} />
+              </Suspense>
             </div>
             <p className="font-mono text-[11px] uppercase tracking-widest text-sand-500 mt-3">
               {site.has3DModel
-                ? 'Drag to rotate, scroll to zoom. Click hotspots for details.'
+                ? 'Drag to rotate, scroll to zoom.'
                 : 'Placeholder 3D scene — full model coming soon.'}
             </p>
           </div>
@@ -278,55 +303,6 @@ export default function SiteExperience() {
           </div>
         )}
 
-        {/* Plan Visit Tab */}
-        {activeTab === 'visit' && (
-          <div className="rise-in space-y-8">
-            <div className="max-w-3xl">
-              <h2 className="font-display text-2xl text-sand-100 mb-4">
-                Plan Your Visit to {site.name}
-              </h2>
-            </div>
-
-            {site.travelInfo ? (
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="rounded-xl border border-basalt-700 bg-basalt-900 p-6 space-y-4">
-                  <h3 className="font-display text-lg text-sand-100">Practical Information</h3>
-                  {[
-                    { label: 'Location', value: site.location },
-                    { label: 'Nearest City', value: site.travelInfo.nearestCity },
-                    { label: 'Nearest Airport', value: site.travelInfo.nearestAirport },
-                    { label: 'Best Time to Visit', value: site.travelInfo.bestTime },
-                    { label: 'Entry Fee', value: site.travelInfo.entryFee },
-                    { label: 'Timings', value: site.travelInfo.timings },
-                  ].map((item, i) => (
-                    <div key={i} className="flex justify-between items-start gap-4">
-                      <span className="font-mono text-[11px] uppercase tracking-widest text-sand-500 shrink-0">
-                        {item.label}
-                      </span>
-                      <span className="text-sm text-sand-300 text-right">{item.value}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="rounded-xl border border-basalt-700 bg-basalt-900 p-6">
-                  <h3 className="font-display text-lg text-sand-100 mb-4">Travel Tips</h3>
-                  <ul className="space-y-3">
-                    {site.travelInfo.tips.map((tip, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0" />
-                        <span className="text-sm text-sand-500 leading-relaxed">{tip}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ) : (
-              <p className="text-sand-500 italic">
-                Travel information for this site is being compiled.
-              </p>
-            )}
-          </div>
-        )}
       </div>
 
       {/* Lightbox / Modal */}

@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, MapPin, ScanLine } from 'lucide-react'
+import { ArrowRight, ExternalLink, MapPin } from 'lucide-react'
 import Navbar from '../components/ui/Navbar'
 import HeritageMapView from '../components/map/HeritageMapView'
-import { HERITAGE_SITES, UNESCO_GROUPS } from '../data/heritageSites'
+import { getGoogleMapsUrl, HERITAGE_SITES, UNESCO_GROUPS } from '../data/heritageSites'
 import { useTheme } from '../hooks/useTheme'
 
 export default function HeritageMap() {
@@ -69,7 +69,7 @@ export default function HeritageMap() {
         </div>
 
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-6 items-start">
-          <div className="h-[520px] rise-in">
+          <div className="h-130 rise-in">
             <HeritageMapView
               onSelectSite={setSelectedSite}
               selectedSiteId={selectedSite?.id}
@@ -78,7 +78,7 @@ export default function HeritageMap() {
 
           <div className="rise-in" style={{ animationDelay: '0.1s' }}>
             {/* Site List */}
-            <div className="max-h-[320px] overflow-y-auto pr-1 mb-4 space-y-2">
+            <div className="max-h-80 overflow-y-auto pr-1 mb-4 space-y-2">
               {filteredSites.map((site) => {
                 const isActive = site.id === selectedSite?.id
                 return (
@@ -118,13 +118,24 @@ export default function HeritageMap() {
                 <p className="text-sm text-sand-500 leading-relaxed mb-5">
                   {selectedSite.shortDescription}
                 </p>
-                <button
-                  onClick={() => navigate(`/heritage/${selectedSite.slug}`)}
-                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-gold-500 text-basalt-950 font-medium hover:bg-gold-400 transition-colors"
-                >
-                  {selectedSite.has3DModel ? 'Explore in 3D' : 'Explore Heritage Site'}
-                  <ArrowRight size={15} />
-                </button>
+                <div className="grid sm:grid-cols-2 gap-2">
+                  <button
+                    onClick={() => navigate(`/heritage/${selectedSite.slug}`)}
+                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-gold-500 text-basalt-950 font-medium hover:bg-gold-400 transition-colors"
+                  >
+                    {selectedSite.has3DModel ? 'Explore in 3D' : 'Explore Heritage Site'}
+                    <ArrowRight size={15} />
+                  </button>
+                  <a
+                    href={getGoogleMapsUrl(selectedSite)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${selectedSite.name} in Google Maps`}
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full border border-gold-600/60 text-gold-400 hover:bg-gold-500 hover:text-basalt-950 transition-colors text-xs font-medium"
+                  >
+                    <ExternalLink size={14} /> Open in Google Maps
+                  </a>
+                </div>
               </div>
             )}
           </div>

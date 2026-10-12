@@ -60,6 +60,7 @@ export const HERITAGE_SITES = [
     builder: 'Narasimhavarman II (Rajasimha)',
     thumbnail: '/images/sites/shore-temple-thumb.jpg',
     heroImage: '/images/sites/shore-temple-hero.jpg',
+    imageAlt: 'Shore Temple shrines beside a reflecting pool at sunset',
     gallery: [
       '/images/sites/shore-temple/image1.jpg',
       '/images/sites/shore-temple/image2.jpg',
@@ -118,6 +119,7 @@ export const HERITAGE_SITES = [
     builder: 'Narasimhavarman I (Mamalla)',
     thumbnail: '/images/sites/pancha-rathas-thumb.jpg',
     heroImage: '/images/sites/pancha-rathas-hero.jpg',
+    imageAlt: 'The five monolithic Pancha Rathas carved from granite at Mahabalipuram',
     gallery: [
       '/images/sites/pancha-rathas/image1.jpg',
       '/images/sites/pancha-rathas/image2.jpg',
@@ -156,8 +158,8 @@ export const HERITAGE_SITES = [
         'Best photographed in late afternoon light.',
       ],
     },
-    has3DModel: false,
-    modelPath: null,
+    has3DModel: true,
+    modelPath: '/models/panja-raths.glb',
     featured: false,
   },
   {
@@ -175,6 +177,7 @@ export const HERITAGE_SITES = [
     builder: 'Narasimhavarman I (Mamalla)',
     thumbnail: '/images/sites/arjunas-penance-thumb.jpg',
     heroImage: '/images/sites/arjunas-penance-hero.jpg',
+    imageAlt: 'Arjuna\'s Penance open-air rock relief with carved elephants and figures',
     gallery: [
       '/images/sites/arjunas-penance/image1.jpg',
       '/images/sites/arjunas-penance/image2.jpg',
@@ -233,6 +236,7 @@ export const HERITAGE_SITES = [
     builder: 'Rajaraja Chola I',
     thumbnail: '/images/sites/brihadeeswarar-thanjavur-thumb.jpg',
     heroImage: '/images/sites/brihadeeswarar-thanjavur-hero.jpg',
+    imageAlt: 'Brihadeeswarar Temple vimana viewed through the stone enclosure at Thanjavur',
     gallery: [
       '/images/sites/brihadeeswarar-thanjavur/image1.jpg',
       '/images/sites/brihadeeswarar-thanjavur/image2.jpg',
@@ -273,8 +277,8 @@ export const HERITAGE_SITES = [
         'The Thanjavur Royal Palace and Art Gallery are nearby.',
       ],
     },
-    has3DModel: false,
-    modelPath: null,
+    has3DModel: true,
+    modelPath: '/models/thanjavur-temple.glb',
     featured: true,
   },
   {
@@ -292,6 +296,7 @@ export const HERITAGE_SITES = [
     builder: 'Rajendra Chola I',
     thumbnail: '/images/sites/gangaikonda-cholapuram-thumb.jpg',
     heroImage: '/images/sites/gangaikonda-cholapuram-hero.jpg',
+    imageAlt: 'Gangaikonda Cholapuram Temple with its distinctive Chola tower',
     gallery: [
       '/images/sites/gangaikonda-cholapuram/image1.jpg',
       '/images/sites/gangaikonda-cholapuram/image2.jpg',
@@ -350,6 +355,7 @@ export const HERITAGE_SITES = [
     builder: 'Rajaraja Chola II',
     thumbnail: '/images/sites/airavatesvara-darasuram-thumb.jpg',
     heroImage: '/images/sites/airavatesvara-darasuram-hero.jpg',
+    imageAlt: 'Airavatesvara Temple stone chariot mandapa and carved courtyard at Darasuram',
     gallery: [
       '/images/sites/airavatesvara-darasuram/image1.jpg',
       '/images/sites/airavatesvara-darasuram/image2.jpg',
@@ -408,8 +414,9 @@ export const HERITAGE_SITES = [
     period: '1899–1908 (Construction)',
     dynasty: 'British Colonial Era',
     builder: 'Nilgiri Railway Company / British India',
-    thumbnail: '/images/sites/nilgiri-mountain-railway-thumb.jpg',
-    heroImage: '/images/sites/nilgiri-mountain-railway-hero.jpg',
+    thumbnail: '/images/sites/nilgiri-mountain-railway/image1.jpg',
+    heroImage: '/images/sites/nilgiri-mountain-railway/image1.jpg',
+    imageAlt: 'Nilgiri Mountain Railway heritage train travelling through the Western Ghats',
     gallery: [
       '/images/sites/nilgiri-mountain-railway/image1.jpg',
       '/images/sites/nilgiri-mountain-railway/image2.jpg',
@@ -473,6 +480,22 @@ export function getSiteBySlug(slug) {
 /** Get a single site by id */
 export function getSiteById(id) {
   return HERITAGE_SITES.find((s) => s.id === id) ?? null
+}
+
+/** Build a keyless Google Maps search URL from the site's stored coordinates. */
+export function getGoogleMapsUrl(site) {
+  return `https://www.google.com/maps/search/?api=1&query=${site.lat},${site.lng}`
+}
+
+/** Build a keyless Google Maps directions URL from the site's stored coordinates. */
+export function getGoogleMapsDirectionsUrl(site) {
+  return `https://www.google.com/maps/dir/?api=1&destination=${site.lat},${site.lng}`
+}
+
+/** Build a keyless Google Maps search URL for nearby place discovery. */
+export function getGoogleMapsNearbySearchUrl(site, type) {
+  const query = `${type} near ${site.name}`.replace(/ /g, '+')
+  return `https://www.google.com/maps/search/?api=1&query=${query}`
 }
 
 /** Get all sites belonging to a UNESCO group */

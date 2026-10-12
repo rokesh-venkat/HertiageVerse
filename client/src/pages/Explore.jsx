@@ -121,7 +121,7 @@ export default function Explore() {
                   <div className="h-40 bg-basalt-800 flex items-center justify-center relative overflow-hidden">
                     <img
                       src={site.thumbnail}
-                      alt={site.name}
+                      alt={site.imageAlt || site.name}
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
