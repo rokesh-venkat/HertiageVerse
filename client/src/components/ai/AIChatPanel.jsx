@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
-import { Send, Bot, User, Sparkles, AlertCircle } from 'lucide-react'
+import { Send, Bot, User, Sparkles, AlertCircle, RefreshCw } from 'lucide-react'
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
 
 export default function AIChatPanel({ site }) {
   const [messages, setMessages] = useState([
@@ -12,23 +14,27 @@ export default function AIChatPanel({ site }) {
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState('online')
+  const [retryQuestion, setRetryQuestion] = useState('')
   const messagesEndRef = useRef(null)
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  const handleSend = async (e) => {
+  const handleSend = async (e, question = input) => {
     e?.preventDefault()
-    if (!input.trim() || loading) return
+    if (!question.trim() || loading) return
 
-    const userMsg = input.trim()
+    const userMsg = question.trim()
     setInput('')
+    setRetryQuestion('')
     setMessages((prev) => [...prev, { role: 'user', content: userMsg }])
     setLoading(true)
+    setStatus('loading')
 
     try {
-      const res = await fetch('http://localhost:3001/api/ai/chat', {
+      const res = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -41,6 +47,8 @@ export default function AIChatPanel({ site }) {
 
       if (!res.ok) throw new Error('API server error')
       const data = await res.json()
+      const responseMode = data.mode || (data.isFallback ? 'local_verified_fallback' : 'gemini')
+      const isUnavailable = responseMode === 'unavailable'
 
       setMessages((prev) => [
         ...prev,
@@ -48,19 +56,22 @@ export default function AIChatPanel({ site }) {
           role: 'assistant',
           content: data.text,
           sources: data.sourcesUsed,
+          mode: responseMode,
         },
       ])
-    } catch (err) {
-      // Local fallback response when backend is offline
+      setStatus(isUnavailable ? 'offline' : responseMode === 'local_verified_fallback' ? 'fallback' : 'online')
+      if (isUnavailable) setRetryQuestion(userMsg)
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
           role: 'assistant',
-          content: `${site?.name || 'This heritage site'} is an architectural treasure of Tamil Nadu. ${
-            site?.overview?.slice(0, 200) || 'It is an essential UNESCO World Heritage location.'
-          }... Ask any question about its features, period, or dynasty!`,
+          content: 'The Heritage Guide is temporarily unavailable. Please try again shortly.',
+          mode: 'unavailable',
         },
       ])
+      setStatus('offline')
+      setRetryQuestion(userMsg)
     } finally {
       setLoading(false)
     }
@@ -72,8 +83,15 @@ export default function AIChatPanel({ site }) {
     `Why is it UNESCO recognized?`,
   ]
 
+  const statusText = {
+    online: 'AI Heritage Guide',
+    loading: 'Consulting heritage archive...',
+    fallback: 'Showing verified local heritage information',
+    offline: 'Guide temporarily unavailable',
+  }
+
   return (
-    <div className="rounded-2xl border border-basalt-700 bg-basalt-900 overflow-hidden flex flex-col h-[560px]">
+    <div className="rounded-2xl border border-basalt-700 bg-basalt-900 overflow-hidden flex flex-col h-140">
       {/* Header */}
       <div className="p-4 border-b border-basalt-800 bg-basalt-950/60 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -81,7 +99,7 @@ export default function AIChatPanel({ site }) {
             <Bot size={16} className="text-gold-400" />
           </div>
           <div>
-            <h3 className="font-display text-sm text-sand-100">AI Heritage Guide</h3>
+            <h3 className="font-display text-sm text-sand-100">{statusText[status]}</h3>
             <p className="font-mono text-[10px] uppercase tracking-widest text-gold-500">
               Grounded on Verified Knowledge · {site?.name}
             </p>
@@ -111,11 +129,40 @@ export default function AIChatPanel({ site }) {
                   : 'bg-basalt-800 text-sand-100 rounded-tl-none border border-basalt-700'
               }`}
             >
+              {msg.mode === 'local_verified_fallback' && (
+                <div className="mb-3 flex items-center gap-2 text-xs text-gold-400" role="status">
+                  <AlertCircle size={14} /> Showing verified local heritage information
+                </div>
+              )}
+              {msg.mode === 'unavailable' && (
+                <div className="mb-3 flex items-center gap-2 text-xs text-red-300" role="status">
+                  <AlertCircle size={14} /> Guide temporarily unavailable
+                </div>
+              )}
               <p>{msg.content}</p>
               {msg.sources && msg.sources.length > 0 && (
                 <div className="mt-2 pt-2 border-t border-basalt-700/50 font-mono text-[10px] text-gold-400/80">
-                  Source: {msg.sources.join(', ')}
+                  Sources used:{' '}
+                  {msg.sources.map((source, sourceIndex) => (
+                    <span key={`${source.name}-${sourceIndex}`}>
+                      {sourceIndex > 0 && ', '}
+                      {source.url ? (
+                        <a href={source.url} target="_blank" rel="noreferrer" className="hover:text-gold-300 underline">
+                          {source.name}
+                        </a>
+                      ) : source.name}
+                    </span>
+                  ))}
                 </div>
+              )}
+              {msg.mode === 'unavailable' && msg === messages[messages.length - 1] && retryQuestion && (
+                <button
+                  type="button"
+                  onClick={() => handleSend(undefined, retryQuestion)}
+                  className="mt-3 inline-flex items-center gap-2 text-xs text-gold-400 hover:text-gold-300"
+                >
+                  <RefreshCw size={13} /> Retry
+                </button>
               )}
             </div>
             {msg.role === 'user' && (
