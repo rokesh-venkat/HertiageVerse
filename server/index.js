@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import aiRoutes from './routes/ai.js'
+import siteRoutes from './routes/sites.js'
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ app.get('/api/health', (req, res) => {
 })
 
 app.use('/api', aiRoutes)
+app.use('/api/sites', siteRoutes)
 
 app.listen(PORT, () => {
   console.log(`HeritageVerse API running on port ${PORT}`)
